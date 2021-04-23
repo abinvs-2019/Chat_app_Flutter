@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "561303625623",
+    "project_id": "chatapp-6a6d9",
+    "storage_bucket": "chatapp-6a6d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561303625623:android:35b70aed7dbc1f0632aed2",
+        "android_client_info": {
+          "package_name": "com.abiy.chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561303625623-60m1nt7mhtitebchhvaj8t00rapeva87.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxuMi7V2YASQA0EvCjNF7sJDEO9f-PWrI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561303625623-60m1nt7mhtitebchhvaj8t00rapeva87.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
