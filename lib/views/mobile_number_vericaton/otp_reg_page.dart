@@ -1,12 +1,10 @@
 import 'package:chat_app/views/login_page.dart';
-import 'package:chat_app/views/otp_verifivation_page.dart';
-import 'package:chat_app/views/singup_page.dart';
-import 'package:chat_app/widgets/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chat_app/views/mobile_number_vericaton/otp_verifivation_page.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class OtpReg extends StatefulWidget {
+  final Function viewScreen;
+  OtpReg(this.viewScreen);
   @override
   _OtpVerifyState createState() => _OtpVerifyState();
 }
@@ -17,7 +15,13 @@ class _OtpVerifyState extends State<OtpReg> {
   final formKey = GlobalKey<FormState>();
   validateForm() async {
     if (formKey.currentState.validate()) {
-      setState(() {});
+      setState(() {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    OtpVerification(phoneNumber: phoneNunber.text)));
+      });
     }
   }
 
@@ -87,13 +91,8 @@ class _OtpVerifyState extends State<OtpReg> {
                         ),
                         SizedBox(height: 20),
                         GestureDetector(
-                          onTap: () async {
-                            await validateForm();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => OtpVerification(
-                                        phoneNumber: phoneNunber.text)));
+                          onTap: () {
+                            validateForm();
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -122,10 +121,7 @@ class _OtpVerifyState extends State<OtpReg> {
                                     color: Colors.blue),
                               ),
                               onTap: () {
-                                Navigator.pop(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginPage()));
+                                widget.viewScreen();
                               },
                             ),
                           ],
