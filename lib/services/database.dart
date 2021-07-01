@@ -31,15 +31,41 @@ class DatabaseMethods {
     });
   }
 
-  Future<void> addConversationMessages(String chatRoomId, messageMap) {
-    FirebaseFirestore.instance
+  Future addConversationMessages(String chatRoomId, messageMap) async {
+    var id;
+    await FirebaseFirestore.instance
         .collection("ChatRoom")
         .doc(chatRoomId)
         .collection("chats")
         .add(messageMap)
-        .catchError((e) {
-      print(e.toString());
-    });
+        .then((value) => {id = value.id});
+    if (id != null) {
+      return id;
+    } else {
+      print("no id got");
+    }
+  }
+
+  Future<void> UpdateVideoChat(String chatRoomid, id) async {
+    await FirebaseFirestore.instance
+        .collection('ChatRoom')
+        .doc(chatRoomid)
+        .collection("chats")
+        .doc(id)
+        .delete();
+    // FirebaseFirestore.instance
+    //     .collection('chatRoom')
+    //     .doc(chatRoomid)
+    //     .collection("chats")
+    //     .where("video_call")
+    //     .get()
+    //     .then((value) => value.docs.forEach((element) {
+    //           FirebaseFirestore.instance
+    //               .collection("chatRoom")
+    //               .doc(chatRoomid)
+    //               .delete()
+    //               .then((value) => print("success"));
+    //         }));
   }
 
   getConversationMessages(String chatRoomId) async {
@@ -48,6 +74,15 @@ class DatabaseMethods {
         .doc(chatRoomId)
         .collection("chats")
         .orderBy("time", descending: false)
+        .snapshots();
+  }
+
+  getVideoCallMessages(String chatRoomId) async {
+    return await FirebaseFirestore.instance
+        .collection("ChatRoom")
+        .doc(chatRoomId)
+        .collection("chats")
+        .where("video_call")
         .snapshots();
   }
 

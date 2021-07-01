@@ -14,6 +14,17 @@ class OtpVerification extends StatefulWidget {
 }
 
 class _OtpVerificationState extends State<OtpVerification> {
+  toasrSHower(String message) {
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.white,
+        textColor: Colors.black,
+        fontSize: 16.0);
+  }
+
   TextEditingController _otpController1 = TextEditingController();
 
   Future<bool> loginUser(String phoneNunber) async {
@@ -33,6 +44,7 @@ class _OtpVerificationState extends State<OtpVerification> {
           }
         },
         verificationFailed: (FirebaseAuthException exception) {
+          toasrSHower(exception.toString());
           print(exception);
         },
         codeSent: (String verificationId, [int forceResendingToken]) {
@@ -98,7 +110,7 @@ class _OtpVerificationState extends State<OtpVerification> {
   otpsetagain() async {
     await loginUser(widget.phoneNumber);
     Fluttertoast.showToast(
-        msg: "Otp sent",
+        msg: "Otp sent again..",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,

@@ -16,7 +16,7 @@ class _OtpVerifyState extends State<OtpReg> {
   validateForm() async {
     if (formKey.currentState.validate()) {
       setState(() {
-        Navigator.push(
+        Navigator.pushReplacement(
             context,
             MaterialPageRoute(
                 builder: (context) =>

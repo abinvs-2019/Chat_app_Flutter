@@ -16,9 +16,11 @@ class _ProfilePageState extends State<ProfilePage> {
   DatabaseMethods datamethods = DatabaseMethods();
   String profieImg;
   String name = Constants.myName;
+
   signout() async {
     await authMethod.signOut();
     HelperFunction.saveuserLoggedInSharedPreferrence(false);
+
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage(null)));
   }
@@ -26,10 +28,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    datamethods.getUserbyEmail(Constants.userEmail).then((val) {
+    datamethods.getUserbyUsername(name).then((val) {
       snapshotUserInfo = val;
       setState(() {
-        profieImg = Constants.userProfilePic;
+        profieImg = snapshotUserInfo.docs[0].data()["profileImage"];
       });
     });
   }
@@ -40,42 +42,45 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text("Profile"),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Container(
-              width: 190.0,
-              height: 190.0,
+      body: Column(
+        children: [
+          Container(
+            child: Center(
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage('$profieImg'),
+                    backgroundColor: Colors.grey[400],
+                    child: Image.network('$profieImg'),
+                    radius: 120,
+                  ),
+                  Text(
+                    name == null ? "" : name,
+                  ),
+                  Text(Constants.userEmail == null ? "" : Constants.userEmail),
+                ],
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              signout();
+            },
+            child: Container(
+              alignment: Alignment.bottomCenter,
+              width: MediaQuery.of(context).size.width / 1.1,
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: Text(
+                "Logout",
+                style: TextStyle(color: Colors.white),
+              ),
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: NetworkImage('$profieImg' == null ? "" : '$profieImg'),
-                ),
+                color: Colors.teal,
+                borderRadius: BorderRadius.circular(15),
               ),
             ),
-            Text(name == null ? "" : name),
-            Text(Constants.userEmail == null ? "" : Constants.userEmail),
-            GestureDetector(
-              onTap: () {
-                signout();
-              },
-              child: Container(
-                alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: Text(
-                  "Logout",
-                  style: TextStyle(color: Colors.white),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.teal,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

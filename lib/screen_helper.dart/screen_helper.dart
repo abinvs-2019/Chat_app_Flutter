@@ -1,6 +1,6 @@
 import 'package:chat_app/views/login_page.dart';
 import 'package:chat_app/views/mobile_number_vericaton/otp_reg_page.dart';
-import 'package:chat_app/views/singup_page.dart';
+
 import 'package:flutter/material.dart';
 
 class AuthenticationPage extends StatefulWidget {

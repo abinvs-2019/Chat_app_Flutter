@@ -56,6 +56,7 @@ class _SearchScreenState extends State<SearchScreen> {
   createChatRoomConversation({
     String userName,
   }) async {
+    userName = Constants.usernameFOrProfile = userName;
     if (userName != Constants.myName) {
       Constants.myName = await HelperFunction.getuserNameInSharedPreferrence();
       String chatRoomId = getChatRoomId(userName, Constants.myName);
@@ -65,6 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
         "chatroomId": chatRoomId
       };
       DatabaseMethods().createChatRoom(chatRoomId, chatRoomMap);
+
       Navigator.push(
           context,
           MaterialPageRoute(

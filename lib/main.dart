@@ -1,7 +1,6 @@
 import 'package:chat_app/helper/helperFunction.dart';
 import 'package:chat_app/screen_helper.dart/screen_helper.dart';
 import 'package:chat_app/views/chatroom.dart';
-import 'package:chat_app/views/singup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 

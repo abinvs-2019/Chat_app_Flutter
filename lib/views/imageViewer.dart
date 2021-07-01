@@ -9,12 +9,22 @@ class ImageViewer extends StatefulWidget {
 }
 
 class _ImageViewerState extends State<ImageViewer> {
+  String url;
+
+  @override
+  void initState() {
+    url = widget.url;
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: PhotoView(
-      imageProvider:
-          NetworkImage(widget.url == null ? Container() : widget.url),
-    ));
+    return Container(
+      child: Image(
+            image: NetworkImage('$url'),
+          ) ??
+          Text("Coudn't Load image."),
+    );
   }
 }
