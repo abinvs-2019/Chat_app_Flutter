@@ -1,3 +1,5 @@
+// ignore_for_file: missing_required_param
+
 import 'dart:async';
 import 'package:chat_app/helper/contants.dart';
 import 'package:chat_app/services/database.dart';
@@ -84,9 +86,8 @@ class _CallPageState extends State<CallPage> {
     }
     await _initAgoraRtcEngine();
     _addAgoraEventHandlers();
-    await _engine.enableWebSdkInteroperability(true);
     VideoEncoderConfiguration configuration = VideoEncoderConfiguration();
-    configuration.dimensions = VideoDimensions(1920, 1080);
+    configuration.dimensions = VideoDimensions(height: 1920, width: 1080);
     await _engine.setVideoEncoderConfiguration(configuration);
     // await getToken();
     await _engine.joinChannel(null, widget.name, null, 0);

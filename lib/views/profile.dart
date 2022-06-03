@@ -31,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
     datamethods.getUserbyUsername(name).then((val) {
       snapshotUserInfo = val;
       setState(() {
-        profieImg = snapshotUserInfo.docs[0].data()["profileImage"];
+        profieImg = snapshotUserInfo.docs[0].get("profileImage");
       });
     });
   }

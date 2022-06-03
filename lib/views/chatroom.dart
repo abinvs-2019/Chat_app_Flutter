@@ -46,7 +46,7 @@ class _ChatRoomState extends State<ChatRoom> {
       setState(() {
         toastShoer("Starting ProfileImages");
         nme = snap.docs[0]
-            .data()['chatroomId']
+            .get('chatroomId')
             .toString()
             .replaceAll("_", "")
             .replaceAll(Constants.myName, "");
@@ -60,7 +60,7 @@ class _ChatRoomState extends State<ChatRoom> {
       snapshotUserInfo = val;
       toastShoer("Getting Profile Images");
       setState(() {
-        profleImageUrl = snapshotUserInfo.docs[0].data()["profileImage"];
+        profleImageUrl = snapshotUserInfo.docs[0].get("profileImage");
 
         // ChatRoomsTile(imgUrl: profileImageUrl);
 

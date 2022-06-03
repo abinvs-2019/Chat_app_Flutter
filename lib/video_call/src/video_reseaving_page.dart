@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'dart:ffi';
+
 import 'package:chat_app/helper/contants.dart';
-import 'package:chat_app/helper/contants.dart';
-import 'package:chat_app/services/database.dart';
+
 import 'package:chat_app/video_call/src/utils/settings.dart';
 import 'package:http/http.dart' as http;
 import 'package:agora_rtc_engine/rtc_engine.dart';
@@ -88,9 +87,9 @@ class _RecievCallPageState extends State<RecievingCallPage> {
     }
     await _initAgoraRtcEngine();
     _addAgoraEventHandlers();
-    await _engine.enableWebSdkInteroperability(true);
+
     VideoEncoderConfiguration configuration = VideoEncoderConfiguration();
-    configuration.dimensions = VideoDimensions(1920, 1080);
+    configuration.dimensions = VideoDimensions(height: 1920, width: 1080);
     await _engine.setVideoEncoderConfiguration(configuration);
     // await getToken();
     print("channel joined");

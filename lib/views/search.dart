@@ -81,8 +81,8 @@ class _SearchScreenState extends State<SearchScreen> {
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return SearcTile(
-                userEmail: searchSnapshot.docs[index].data()["email"],
-                username: searchSnapshot.docs[index].data()["name"],
+                userEmail: searchSnapshot.docs[index].get("email"),
+                username: searchSnapshot.docs[index].get("name"),
               );
             })
         : Container(
