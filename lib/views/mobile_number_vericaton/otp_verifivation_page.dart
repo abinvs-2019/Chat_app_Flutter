@@ -76,7 +76,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                     ],
                   ),
                   actions: <Widget>[
-                    FlatButton(
+                    ElevatedButton(
                         onPressed: () async {
                           final code = _otpController1.text.trim();
                           AuthCredential credential =

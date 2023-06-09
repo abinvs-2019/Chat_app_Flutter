@@ -98,11 +98,9 @@ class IndexState extends State<IndexPage> {
                       ),
                     ),
                     Expanded(
-                      child: RaisedButton(
+                      child: ElevatedButton(
                         onPressed: onJoin,
                         child: Text('Join'),
-                        color: Colors.blueAccent,
-                        textColor: Colors.white,
                       ),
                     )
                   ],
